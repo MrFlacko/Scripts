@@ -1,6 +1,10 @@
-# AMDGPU Fan
-# Change the speed of your GPU Fan if you are running Linux with AMD
-# This has been tested on Arch Based releases but assumed to be working on others
+###################################################################################
+############################### Requirements: git #################################
+###################################################################################
+# AMDGPU Fan                                                                      #
+# Change the speed of your GPU Fan if you are running Linux with AMD              #
+# This has been tested on Arch Based releases but assumed to be working on others #
+###################################################################################
 #!/bin/bash
 mkdir -p ~/Downloads/GPU
 mkdir ~/.GPU
@@ -16,3 +20,4 @@ source ~/.bashrc
 #This is controlled with the commannd $ gpu <speed%>
 #e.g '$ gpu 60' for 60%
 #Credit to https://github.com/DominiLux
+####################################################################################
