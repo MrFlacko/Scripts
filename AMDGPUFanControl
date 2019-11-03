@@ -1,0 +1,18 @@
+# AMDGPU Fan
+# Change the speed of your GPU Fan if you are running Linux with AMD
+# This has been tested on Arch Based releases but assumed to be working on others
+#!/bin/bash
+mkdir -p ~/Downloads/GPU
+mkdir ~/.GPU
+cd ~/Downloads/GPU
+git clone https://github.com/DominiLux/amdgpu-pro-fans.git
+mv amdgpu-pro-fans/amdgpu-pro-fans.sh ~/.GPU/amdgpu-pro-fans.sh
+chmod u+x ~/.GPU/amdgpu-pro-fans.sh
+echo >> ~/.bashrc
+echo '#AMD GPU Fan Contorl' >> ~/.bashrc
+echo '#Usage "gpu <fanspeed%>"' >> ~/.bashrc
+echo 'alias gpu='\''sudo ~/.GPU/amdgpu-pro-fans.sh -s'\' >> ~/.bashrc
+source ~/.bashrc
+#This is controlled with the commannd $ gpu <speed%>
+#e.g '$ gpu 60' for 60%
+#Credit to https://github.com/DominiLux
