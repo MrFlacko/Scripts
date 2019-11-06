@@ -1,10 +1,19 @@
 ## This is just a simple script to install Apache24 on CentOS
 ## This can be ran by the following commands
-# curl 
+########################################################################################################
+# $ curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/CentOS_Apache24_Install > install.sh
+# $ bash install.sh
+########################################################################################################
 #!/bin/bash
 sudo yum -y install httpd
 sudo service httpd start
 sudo chkconfig httpd on
-sudo firewall-cmd --zone=public --add-port=9-/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
 sudo firewall-cmd --reload
+ip a
+echo 
+echo This can now be accessed by your http://<IP address> from any computer
+echo you can also verify if this is working by doing 'curl localhost'
+echo if you get a bunch of random text, it is working.
+echo
 echo Done
