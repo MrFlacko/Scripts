@@ -1,0 +1,127 @@
+## My personal bashrc file
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+PS1='[\u@\h \W]\$ '
+
+alias ls='ls --color=auto'
+alias update='yay -Syu --noconfirm'
+alias firewall='sudo ufw status verbose'
+alias src='source ~/.bashrc'
+alias brc='vim /home/flacko/.bashrc'
+alias cbrc='code /home/flacko/.bashrc'
+alias publicip='lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk "{ print $4 }" | sed "/^$/d; s/^[ ]*//g; s/[ ]*$//g"'
+alias lip='ip a | grep inet | sed '/inet6/d''
+alias jv='java -jar'
+alias install='sudo pacman -S'
+alias ssh='cat /home/flacko/.ssh/known_hosts > /home/flacko/.ssh/known_hosts && sudo rm /home/flacko/.ssh/known_hosts && ssh'
+alias reboot='sudo reboot'
+alias gpu='sudo ~/.GPU/amdgpu-pro-fans.sh -s'
+
+pt() {
+	#Start packettracer when network is turned off
+	#Then turn it back on again
+	sudo nmcli networking off
+	command packettracer $1 &
+	sudo nmcli networking on
+	command exit
+}
+
+transfer() {
+    #Transfer files and receive downloadable link
+	#transfer <file>	
+	if [ $# -eq 0 ] 
+		then 
+			echo -e "No arguments specified. Usage:\ntransfer <file>\ncat <file> | transfer <file>"
+			return 1
+	fi
+	tmpfile=$( mktemp -t transferXXX ) 
+	if tty -s
+       		then 
+			basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g')
+			curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile
+		else 
+			curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile 
+	fi
+	cat $tmpfile
+	rm -f $tmpfile 
+}
+
+screen () {
+	#Used for discord sharing screens, turns of 2 of three screens and back on
+	#Usage: screen on|off
+	if [[ $1 == "on" ]]; then
+		command xrandr --output DP-2 --left-of DP-3 --auto
+		command xrandr --output HDMI-1 --right-of DP-3 --auto
+		command xrandr --output DP-2 --primary
+		command exit
+	elif [[ $1 == "off" ]]; then
+		command xrandr --output DP-3 --primary
+		command xrandr --output DP-2 --off
+		command xrandr --output HDMI-1 --off
+		command exit
+	else
+		echo '	ERROR Usage: '
+		echo '	screen on|off'
+		echo
+	fi
+}
+
+clean () {
+	#This will clean the entire system
+	clear
+	echo 'This will do the following'
+	echo ' - Update the Package Mirrors'
+	echo ' - Update the System'
+	echo ' - Create a temporary backup to "/home/flacko/.cleanbackup" '
+	echo ' - Compress the backup file'
+	echo ' - Rename the file to the current date'
+	echo ' - Move the compressed file to /home/flacko/mnt/Backups/'
+	echo ' - Remove the temporary files this script created'
+	echo ' - Remove the contents from "/var/cache/pacman/pkg/"'
+	echo ' - Remove packages that are unused'
+	echo ' - Remove the "/home/flacko/.cache/" files'
+	echo
+	echo 'Press "Enter" if you wish to proceed'	
+	read nul
+	dirName=$(date +%d%m%y-%H%M%S)
+	tmpDir=$(echo /home/flacko/.cleanbackup/$dirName)
+	link1=$(echo 'https://www.archlinux.org/mirrorlist/?country=AU&protocol=http&protocol=https&ip_version=4')
+	link2=$(echo 'https://www.archlinux.org/mirrorlist/?country=all&protocol=http&protocol=https&ip_version=4')
+	if [[ $1 == "-v" ]]; then
+		mkdir /home/flacko/.cleanbackup/
+		mkdir $tmpDir
+		curl $link1 | sed 's/#S/S/g' > $tmpDir/newmirrorlist
+		curl $link2 | grep -A 3 Worldwide | sed 's/#S/S/g' >> $tmpDir/newmirrorlist
+		sudo cat /etc/pacman.d/mirrorlist > $tmpDir/mirrorlist
+		sudo rm -vf /etc/pacman.d/mirrorlist
+		sudo cp -av $tmpDir/newmirrorlist /etc/pacman.d/mirrorlist
+		yay -Syu --noconfirm
+		sudo cp -rav /var/cache/pacman/pkg $tmpDir/Package\ Cache
+		sudo cp -rav /home/flacko/.cache $tmpDir/HomeDIR\ Cache
+		sudo pacman -R $(pacman -Qtdq) --noconfirm
+		sudo rm -rvf /var/cache/pacman/pkg/
+		sudo rm -rvf /home/flacko/.cache/	
+		sudo cp -rav $tmpDir /home/flacko/mnt/6TBDrive/Backups/Main\ Computer/Cleanup\ Backups/$dirName
+		sudo rm -rvf /home/flacko/.cleanbackup
+	else
+		mkdir /home/flacko/.cleanbackup/
+		mkdir $tmpDir
+		curl $link1 -# | sed 's/#S/S/g' > $tmpDir/newmirrorlist
+		curl $link2 -# | grep -A 3 Worldwide | sed 's/#S/S/g' >> $tmpDir/newmirrorlist
+		sudo cat /etc/pacman.d/mirrorlist > $tmpDir/mirrorlist
+		sudo rm -f /etc/pacman.d/mirrorlist
+		sudo cp -a $tmpDir/newmirrorlist /etc/pacman.d/mirrorlist
+		yay -Syu --noconfirm > $tmpDir/debug
+		sudo cp -ra /var/cache/pacman/pkg $tmpDir/Package\ Cache
+		sudo cp -ra /home/flacko/.cache $tmpDir/HomeDIR\ Cache
+		sudo pacman -R $(pacman -Qtdq) --noconfirm >> $tmpDir/debug
+		sudo rm -rf /var/cache/pacman/pkg/
+		sudo rm -rf /home/flacko/.cache/	
+		sudo cp -ra $tmpDir /home/flacko/mnt/6TBDrive/Backups/Main\ Computer/Cleanup\ Backups/$dirName
+		sudo rm -rf /home/flacko/.cleanbackup
+	fi
+}
