@@ -1,0 +1,20 @@
+#!/bin/bash
+ip a
+echo 'Please enter your relevant network adapter'
+read adapter
+curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
+apt update
+apt upgrade -y
+apt install net-tools -y
+curl https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh > install.sh
+bash install.sh
+apt install firewalld -y
+firewall-cmd --permanent --add-port=1191/udp
+firewall-cmd --permanent --add-port=22/tcp
+iptables -I FORWARD -i tun0 -o $adapter -s 10.8.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
+iptables -I FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -t nat -I POSTROUTING -o $adapter -s 10.8.0.0/24 -j MASQUERADE
+iptables-save > /etc/firewall.conf
+echo '!/bin/sh' > /etc/network/if-up.d/iptables
+chmod +x /etc/network/if-up.d/iptables
+echo 'iptables-restore < /etc/firewall.conf' >> /etc/network/if-up.d/iptables
