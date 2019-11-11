@@ -1,3 +1,9 @@
+export http_proxy='proxy.tafensw.edu.au:8080'
+export https_proxy='proxy.tafensw.edu.au:8080'
+export ftp_proxy='proxy.tafensw.edu.au:8080'
+export HTTP_proxy='proxy.tafensw.edu.au:8080'
+export HTTPS_proxy='proxy.tafensw.edu.au:8080'
+export FTP_proxy='proxy.tafensw.edu.au:8080'
 link1=$(echo 'https://www.archlinux.org/mirrorlist/?country=AU&protocol=http&protocol=https&ip_version=4')
 link2=$(echo 'https://www.archlinux.org/mirrorlist/?country=all&protocol=http&protocol=https&ip_version=4')
 curl $link1 | sed 's/#S/S/g' > newmirrorlist
