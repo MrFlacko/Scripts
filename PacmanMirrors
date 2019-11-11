@@ -1,0 +1,7 @@
+link1=$(echo 'https://www.archlinux.org/mirrorlist/?country=AU&protocol=http&protocol=https&ip_version=4')
+link2=$(echo 'https://www.archlinux.org/mirrorlist/?country=all&protocol=http&protocol=https&ip_version=4')
+curl $link1 | sed 's/#S/S/g' > newmirrorlist
+curl $link2 | grep -A 3 Worldwide | sed 's/#S/S/g' >> newmirrorlist
+cat newmirrorlist > /etc/pacman.d/mirrorlist
+pacman -Sy
+rm newmirrorlist
