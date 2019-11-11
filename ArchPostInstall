@@ -1,4 +1,5 @@
 #!/bin/bash
+pacman -S wget git unzip --noconfirm
 mkdir /home/flacko/Videos
 mkdir /home/flacko/Documents
 mkdir /home/flacko/Music
