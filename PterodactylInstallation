@@ -23,4 +23,7 @@ echo y | ufw delete 5
 echo y | ufw delete 5
 ufw enable
 certbot certonly -d $fqdn
+systemctl restart nginx
 echo done
+echo cd /srv/daemon, copy core.json from the website when creating the node
+echo then do npm start
