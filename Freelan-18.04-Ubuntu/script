@@ -13,3 +13,7 @@ openssl genrsa -out bruce.key 4096
 openssl genrsa -out albury.key 4096
 openssl req -new -sha256 -key bruce.key -out bruce.csr
 openssl req -new -sha256 -key albury.key -out albury.csr
+echo '01' > serial
+openssl ca -out crt/bruce.crt -in bruce.csr -config ca.cnf
+openssl ca -out crt/albury.crt -in albury.csr -config ca.cnf
+
