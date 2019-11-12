@@ -1,4 +1,6 @@
 #!/bin/bash
+#Can be grabbed from
+#wget https://bit.ly/2X6sZVU && bash 2X6sZVU
 echo 'Enter your FQDN panel.example.com'
 read fqdn
 curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
