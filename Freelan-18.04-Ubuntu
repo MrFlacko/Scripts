@@ -1,0 +1,20 @@
+#!/bin/bash
+curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
+apt update
+apt upgrade -y
+apt install freelan -y
+cp /etc/freelan/freelan.cfg /etc/freelan/myconfiguration.cfg
+mkdir -p ~/Certificates/key
+mkdir -p ~/Certificates/crt
+cd ~/Certificates
+openssl req -new -x509 -keyout key/ca.key -out crt/ca.crt -extensions v3_ca
+
+#Country AU
+#State: NSW
+#City: Wagga Wagga
+#Business: TafeNSW
+#OU: BruceNetwork
+openssl genrsa -out bruce.key 4096
+openssl genrsa -out albury.key 4096
+openssl req -new -sha256 -key bruce.key -out bruce.csr
+openssl req -new -sha256 -key albury.key -out albury.csr
