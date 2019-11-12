@@ -7,7 +7,7 @@ cp /etc/freelan/freelan.cfg /etc/freelan/myconfiguration.cfg
 mkdir -p ~/Certificates/key
 mkdir -p ~/Certificates/crt
 cd ~/Certificates
-curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/Freelan-18.04-Ubuntu/script > ca.cnf
+curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/Freelan-18.04-Ubuntu/ca.cnf > ca.cnf
 openssl req -new -x509 -keyout key/ca.key -out crt/ca.crt -extensions v3_ca
 openssl genrsa -out bruce.key 4096
 openssl genrsa -out albury.key 4096
