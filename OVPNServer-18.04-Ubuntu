@@ -8,12 +8,9 @@ apt upgrade -y
 apt install net-tools -y
 curl https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh > install.sh
 bash install.sh
-ufw enable
-ufw allow 1191/udp
-ufw allow 22/tcp
-#apt install firewalld -y
-#firewall-cmd --permanent --add-port=1191/udp
-#firewall-cmd --permanent --add-port=22/tcp
+apt install firewalld -y
+firewall-cmd --permanent --add-port=1191/udp
+firewall-cmd --permanent --add-port=22/tcp
 iptables -I FORWARD -i tun0 -o $adapter -s 10.8.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
 iptables -I FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 iptables -t nat -I POSTROUTING -o $adapter -s 10.8.0.0/24 -j MASQUERADE
