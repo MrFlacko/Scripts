@@ -7,6 +7,7 @@ cp /etc/freelan/freelan.cfg /etc/freelan/myconfiguration.cfg
 mkdir -p ~/Certificates/key
 mkdir -p ~/Certificates/crt
 cd ~/Certificates
+wget https://github.com/MrFlacko/Scripts/blob/master/Freelan-18.04-Ubuntu/ca.cnf
 openssl req -new -x509 -keyout key/ca.key -out crt/ca.crt -extensions v3_ca
 
 #Country AU
