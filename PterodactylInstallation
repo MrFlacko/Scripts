@@ -25,5 +25,5 @@ ufw enable
 certbot certonly -d $fqdn
 systemctl restart nginx
 echo done
-echo cd /srv/daemon, copy core.json from the website when creating the node
+echo cd /srv/daemon, copy core.json from the website to the config folder when creating the node
 echo then do npm start
