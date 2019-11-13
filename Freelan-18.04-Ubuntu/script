@@ -16,4 +16,4 @@ openssl req -new -sha256 -key albury.key -out albury.csr
 echo '01' > serial
 openssl ca -out crt/bruce.crt -in bruce.csr -config ca.cnf
 openssl ca -out crt/albury.crt -in albury.csr -config ca.cnf
-
+touch index.txt
