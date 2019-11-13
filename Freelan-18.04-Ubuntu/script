@@ -8,12 +8,12 @@ mkdir -p ~/Certificates/key
 mkdir -p ~/Certificates/crt
 cd ~/Certificates
 curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/Freelan-18.04-Ubuntu/ca.cnf > ca.cnf
+echo '01' > serial
+touch index.txt
 openssl req -new -x509 -keyout key/ca.key -out crt/ca.crt -extensions v3_ca
 openssl genrsa -out bruce.key 4096
 openssl genrsa -out albury.key 4096
 openssl req -new -sha256 -key bruce.key -out bruce.csr
 openssl req -new -sha256 -key albury.key -out albury.csr
-echo '01' > serial
 openssl ca -out crt/bruce.crt -in bruce.csr -config ca.cnf
 openssl ca -out crt/albury.crt -in albury.csr -config ca.cnf
-touch index.txt
