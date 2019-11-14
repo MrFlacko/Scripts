@@ -1,20 +1,33 @@
 #!/bin/bash
+clear
 ip a
 echo 'Please enter your relevant network adapter'
 read adapter
+clear
+echo 'Please enter the port you'll be using'
+read port
+clear
+echo 'Please enter the protocol (tcp or udp)'
+read protocol
 curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
 apt update
 apt upgrade -y
 apt install net-tools -y
 curl https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh > install.sh
 bash install.sh
+echo 'script-security 2' >> /etc/openvpn/server/server.conf
+echo 'up /etc/openvpn/update-resolv.conf' >> /etc/openvpn/server/server.conf
+echo 'down /etc/openvpn/update-resolv.conf' >> /etc/openvpn/server/server.conf
 apt install firewalld -y
-firewall-cmd --permanent --add-port=1191/udp
+firewall-cmd --permanent --add-port=$port/$protocol
 firewall-cmd --permanent --add-port=22/tcp
 iptables -I FORWARD -i tun0 -o $adapter -s 10.8.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
 iptables -I FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-iptables -t nat -I POSTROUTING -o $adapter -s 10.8.0.0/24 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o $adapter -s 10.8.0.0/24 -j MASQUERADE
 iptables-save > /etc/firewall.conf
+firewall-cmd --reload
+systemctl restart openvpn
 echo '!/bin/sh' > /etc/network/if-up.d/iptables
 chmod +x /etc/network/if-up.d/iptables
 echo 'iptables-restore < /etc/firewall.conf' >> /etc/network/if-up.d/iptables
+bash install.sh
