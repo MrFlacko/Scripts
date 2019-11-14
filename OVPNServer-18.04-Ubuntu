@@ -9,11 +9,11 @@ read port
 clear
 echo 'Please enter the protocol, (tcp or udp)'
 read protocol
-curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
+curl 'https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04' > /etc/apt/sources.list
 apt update
 apt upgrade -y
 apt install net-tools -y
-curl https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh > install.sh
+curl 'https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh' > install.sh
 bash install.sh
 echo 'script-security 2' >> /etc/openvpn/server/server.conf
 echo 'up /etc/openvpn/update-resolv.conf' >> /etc/openvpn/server/server.conf
