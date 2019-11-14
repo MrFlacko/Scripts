@@ -30,4 +30,5 @@ systemctl restart openvpn
 echo '!/bin/sh' > /etc/network/if-up.d/iptables
 chmod +x /etc/network/if-up.d/iptables
 echo 'iptables-restore < /etc/firewall.conf' >> /etc/network/if-up.d/iptables
+systemctl restart openvpn-server@server
 bash install.sh
