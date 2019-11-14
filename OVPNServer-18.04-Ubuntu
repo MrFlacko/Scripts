@@ -16,8 +16,8 @@ apt install net-tools -y
 curl 'https://raw.githubusercontent.com/Nyr/openvpn-install/master/openvpn-install.sh' > install.sh
 bash install.sh
 echo 'script-security 2' >> /etc/openvpn/server/server.conf
-echo 'up /etc/openvpn/update-resolv.conf' >> /etc/openvpn/server/server.conf
-echo 'down /etc/openvpn/update-resolv.conf' >> /etc/openvpn/server/server.conf
+echo 'up /etc/openvpn/update-resolv-conf' >> /etc/openvpn/server/server.conf
+echo 'down /etc/openvpn/update-resolv-conf' >> /etc/openvpn/server/server.conf
 apt install firewalld -y
 firewall-cmd --permanent --add-port=$port/$protocol
 firewall-cmd --permanent --add-port=22/tcp
