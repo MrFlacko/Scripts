@@ -4,10 +4,10 @@ ip a
 echo 'Please enter your relevant network adapter'
 read adapter
 clear
-echo 'Please enter the port you'll be using'
+echo 'Please enter the port you will be using'
 read port
 clear
-echo 'Please enter the protocol, tcp or udp'
+echo 'Please enter the protocol, (tcp or udp)'
 read protocol
 curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
 apt update
