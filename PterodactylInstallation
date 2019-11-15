@@ -3,7 +3,7 @@
 #wget https://bit.ly/2X6sZVU && bash 2X6sZVU
 echo 'Enter your FQDN panel.example.com'
 read fqdn
-curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
+#curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
 apt update
 apt upgrade -y
 bash <(curl -s https://raw.githubusercontent.com/VilhelmPrytz/pterodactyl-installer/master/install-panel.sh)
