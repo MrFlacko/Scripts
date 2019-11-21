@@ -1,0 +1,15 @@
+# You need to enter your proxy manually in ~/.subversion/servers
+curl 'https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04' > /etc/apt/sources.list
+apt update
+apt upgrade -y
+apt install subversion autoconf gcc g++ -y
+echo 'Enter your proxy if you need at ~/.subversion/servers by doing Ctrl+Alt+F2'
+echo 'Press Enter to continue'
+read
+svn checkout http://voip.null.ro/svn/yate/trunk yate-SVN
+cd yate-SVN
+./autogen.sh
+./configure
+make
+
+
