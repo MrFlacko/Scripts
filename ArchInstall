@@ -638,6 +638,7 @@ nano city &&
 city=$(cat city | sed 's:#.*$::g' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
 nano mirrors
 grep -v '^#' mirrors | sed '/^[[:space:]]*$/d' > mirrorlist
+clear
 
 #Displaying what has finished
 echo Connection && echo && echo $connection && sleep 1 && clear
@@ -655,7 +656,7 @@ echo Language && echo && echo $language && sleep 1 && clear
 echo Country && echo && echo $country && sleep 1 && clear
 echo City && echo && echo $city && sleep 1 && clear
 echo Mirrors && echo && cat mirrorlist && sleep 1 && clear
-echo .;sleep 1;;echo ..;sleep 1;;echo ...;sleep 1;
+echo .;sleep 1;clear;echo ..;sleep 1;clear;echo ...;sleep 1;clear
 
 #Main commands
 dhcpcd
@@ -668,6 +669,7 @@ cat mirrorlist > /etc/pacman.d/mirrorlist
 pacman -Sy pacman-contrib --noconfirm
 cat mirrorlist | rankmirrors -n 10 - > /etc/pacman.d/mirrorlist
 pacman -Sy
+pacstrap -i /mnt base base-devel linux --noconfirm
 pacstrap -i /mnt base base-devel linux --noconfirm
 genfstab -U -p /mnt >> /mnt/etc/fstab
 #Adding the commands for chroot
