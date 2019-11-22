@@ -518,7 +518,7 @@ echo '## Uncommant the Display Manager you want to use
 echo '## Comment the Programs you don'\''t'' want to use
 ## For none just leave it all uncommented
 xorg
-xorg-apps
+xorg-server
 xorg-xinit
 git
 wget
@@ -589,7 +589,7 @@ echo '## Comment the Programs you don'\''t'' want to use
 ## For none just leave it all uncommented
 discord
 teamviewer
-minecraft' > aurPrograms
+minecraft-launcher' > aurPrograms
 echo '## Comment the CTL Services you don'\''t'' want to use
 ## For none just leave it all uncommented
 sddm
@@ -639,23 +639,22 @@ city=$(cat city | sed 's:#.*$::g' | sed '/^[[:space:]]*$/d' | tr '\n' ' ')
 nano mirrors
 grep -v '^#' mirrors | sed '/^[[:space:]]*$/d' > mirrorlist
 
-
 #Displaying what has finished
-echo Connection && echo && echo $connection && sleep 1 && 
-echo Disk && echo && echo $disk && sleep 1 && 
-echo Disk Prefix&& echo && echo $diskPrefix && sleep 1 && 
-echo Username && echo && echo $username && sleep 1 && 
-echo Password && echo && echo $password && sleep 1 && 
-echo Display Manager && echo && echo $displayManager && sleep 1 && 
-echo Display Driver && echo && echo $displayDriver && sleep 1 && 
-echo Display && echo && echo $display && sleep 1 && 
-echo Programs && echo && echo $programs && sleep 1 && 
-echo AUR Programs && echo && echo $aurPrograms && sleep 1 && 
-echo CTL Services && echo && echo $ctlServices && sleep 1 && 
-echo Language && echo && echo $language && sleep 1 && 
-echo Country && echo && echo $country && sleep 1 && 
-echo City && echo && echo $city && sleep 1 && 
-echo Mirrors && echo && cat mirrorlist && sleep 1 && 
+echo Connection && echo && echo $connection && sleep 1 && clear
+echo Disk && echo && echo $disk && sleep 1 && clear
+echo Disk Prefix&& echo && echo $diskPrefix && sleep 1 && clear
+echo Username && echo && echo $username && sleep 1 && clear
+echo Password && echo && echo $password && sleep 1 && clear
+echo Display Manager && echo && echo $displayManager && sleep 1 && clear
+echo Display Driver && echo && echo $displayDriver && sleep 1 && clear
+echo Display && echo && echo $display && sleep 1 && clear
+echo Programs && echo && echo $programs && sleep 1 && clear
+echo AUR Programs && echo && echo $aurPrograms && sleep 1 && clear
+echo CTL Services && echo && echo $ctlServices && sleep 1 && clear
+echo Language && echo && echo $language && sleep 1 && clear
+echo Country && echo && echo $country && sleep 1 && clear
+echo City && echo && echo $city && sleep 1 && clear
+echo Mirrors && echo && cat mirrorlist && sleep 1 && clear
 echo .;sleep 1;;echo ..;sleep 1;;echo ...;sleep 1;
 
 #Main commands
@@ -669,7 +668,7 @@ cat mirrorlist > /etc/pacman.d/mirrorlist
 pacman -Sy pacman-contrib --noconfirm
 cat mirrorlist | rankmirrors -n 10 - > /etc/pacman.d/mirrorlist
 pacman -Sy
-pacstrap -i /mnt base base-devel --noconfirm
+pacstrap -i /mnt base base-devel linux --noconfirm
 genfstab -U -p /mnt >> /mnt/etc/fstab
 #Adding the commands for chroot
 touch /mnt/final.sh
