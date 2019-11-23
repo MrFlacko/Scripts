@@ -555,7 +555,6 @@ libreoffice-still
 galculator-gtk2
 dia
 firefox
-latte-dock
 qbittorrent
 gimp
 htop
@@ -669,8 +668,7 @@ cat mirrorlist > /etc/pacman.d/mirrorlist
 pacman -Sy pacman-contrib --noconfirm
 cat mirrorlist | rankmirrors -n 10 - > /etc/pacman.d/mirrorlist
 pacman -Sy
-pacstrap -i /mnt base base-devel linux --noconfirm
-pacstrap -i /mnt base base-devel linux --noconfirm
+pacstrap -i /mnt base base-devel linux linux-firmware --noconfirm
 genfstab -U -p /mnt >> /mnt/etc/fstab
 #Adding the commands for chroot
 touch /mnt/final.sh
@@ -710,6 +708,7 @@ cp /etc/sudoers /etc/sudoers.old
 echo $username ALL=\(ALL\) ALL >> /etc/sudoers.old
 echo $username ALL=\(ALL\) NOPASSWD: ALL >> /etc/sudoers
 mkinitcpio -p linux
+pacman -S grub os-prober --noconfirm
 pacman -S grub os-prober --noconfirm
 grub-install /dev/$disk
 grub-mkconfig -o /boot/grub/grub.cfg
