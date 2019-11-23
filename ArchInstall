@@ -554,7 +554,6 @@ spectacle
 libreoffice-still
 galculator-gtk2
 dia
-firefox
 qbittorrent
 gimp
 htop
@@ -566,6 +565,9 @@ gst-libav
 gst-plugins-good
 icedtea-web
 jre8-openjdk
+noto-fonts-emoji
+noto-fonts-extra
+nautilus
 languagetool
 libmythes
 mythes-en
@@ -586,6 +588,8 @@ ufw' > programs
 echo '## Comment the Programs you don'\''t'' want to use
 ## For none just leave it all uncommented
 discord
+timeshift
+google-chrome
 teamviewer
 minecraft-launcher' > aurPrograms
 echo '## Comment the CTL Services you don'\''t'' want to use
@@ -730,13 +734,8 @@ chown -R $username /home/$username/
 sudo -u $username makepkg -si --noconfirm
 rm -rv ../yay
 grub-mkconfig -o /boot/grub/grub.cfg
-echo >> /etc/default/grub
-echo \#Achieve Fastest Boot >> /etc/default/grub
-echo GRUB_FORCE_HIDDEN_MENU=true >> /etc/default/grub
 cd /home/$username/Downloads
-wget https://gist.githubusercontent.com/anonymous/8eb2019db2e278ba99be/raw/257f15100fd46aeeb8e33a7629b209d0a14b9975/gistfile1.sh
-chmod a+x gistfile1.sh
-mv gistfile1.sh /etc/grub.d/31holdshift
+pacman -S linux-lts
 grub-mkconfig -o /boot/grub/grub.cfg
 sudo -u $username yay -S $aurPrograms --noconfirm
 systemctl enable $ctlServices
