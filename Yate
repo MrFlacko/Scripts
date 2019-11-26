@@ -1,4 +1,5 @@
 # You need to enter your proxy manually in ~/.subversion/servers
+apt install curl -y
 curl 'https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04' > /etc/apt/sources.list
 apt update
 apt upgrade -y
