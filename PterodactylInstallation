@@ -3,10 +3,10 @@
 #wget https://bit.ly/2X6sZVU && bash 2X6sZVU
 echo 'Enter your FQDN panel.example.com'
 read fqdn
+apt install curl vim -y
 #curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/UbuntuMirrors18.04 > /etc/apt/sources.list
 apt update
 apt upgrade -y
-apt install curl vim -y
 bash <(curl -s https://raw.githubusercontent.com/VilhelmPrytz/pterodactyl-installer/master/install-panel.sh)
 bash <(curl -s https://raw.githubusercontent.com/VilhelmPrytz/pterodactyl-installer/master/install-daemon.sh)
 apt update
