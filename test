@@ -1,0 +1,1 @@
+sudo apt-get install lynx -y && lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk "{ print $4 }" | sed "/^$/d; s/^[ ]*//g; s/[ ]*$//g"
