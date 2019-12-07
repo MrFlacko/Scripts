@@ -9,6 +9,7 @@ sleep 3
 service apache2 start
 sleep 3
 curl localhost
+#Change the AllowOverride to all
 nano /etc/apache2/apache2.conf
 sleep 3
 service apache2 restart
@@ -37,15 +38,15 @@ apt-get install -y php-mbstring php-gettext
 ## Enter at libmcrypt prefix? [autodetect] :
 # nano /etc/php/7.2/apache2/php.ini
 ## put 'extension=mcrypt.so' under Dynamic Extensions
+# echo 'extension=mcrypt.so' > /etc/php/7.2/mods-available/mcrypt.ini
 phpenmod mcrypt
 
 phpenmod mbstring
-mkdir ~/Downloads
-mkdir ~/Downloads/Multicraft
+mkdir -p ~/Downloads/Multicraft
 cd ~/Downloads/Multicraft
 wget http://www.multicraft.org/download/linux64 -O multicraft.tar.gz
 tar xvzf multicraft.tar.gz
-sudo apt-get install -y default-jre zip unzip
+apt-get install -y default-jre zip unzip
 cd multicraft/
 ./setup.sh
 ip a | grep inet | sed '/inet6/d'
@@ -63,20 +64,28 @@ echo y | ufw delete 6
 ##If you want ssl
 ##(Select option 1)
 # add-apt-repository ppa:certbot/certbot
-# apt install python-certbot-apache
+# apt-get install -y python-certbot-apache
 # certbot --apache -d subdomain.domain.com
 # service apache2 restart
 # a2enmod rewrite
 # service apache2 restart
 # a2enmod ssl
 # service apache2 restart
-# sudo nano /etc/apache2/sites-available/000-default.conf 
+# nano /etc/apache2/sites-available/000-default.conf 
 ## Copy this text to it
 ## #HTTP to HTTPS
 ## ServerName domain.example.com
 ## RewriteEngine on
 ## RewriteCond %{SERVER_NAME} =domain.example.com
-## RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+## RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]/
+# service apache2 restart
+
+##18.04
+# mysql -u root -p
+# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'NewPassword';
+# service mysql stop
+# service mysql start
+
 echo 'Press Enter when web setup is complete'
 read
 /home/minecraft/multicraft/bin/multicraft start
@@ -88,10 +97,3 @@ wget http://www.multicraft.org/files/multicraft.service -O /etc/systemd/system/m
 chmod 644 /etc/systemd/system/multicraft.service
 systemctl enable multicraft
 #Credit to the video https://youtu.be/lR-NKpZRja4 for helping out
-
-##Notes##
-# Could have to do this
-# mysql -u root -p
-# CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-# GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
-# FLUSH PRIVILEGES;
