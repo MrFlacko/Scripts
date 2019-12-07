@@ -13,8 +13,13 @@ nano /etc/apache2/apache2.conf
 sleep 3
 service apache2 restart
 apt-get install -y mysql-server
+
+#18.04
+# apt-get install -y php7.2 libapache2-mod-php7.2
+##Don't do the command underneath
 apt-get install -y php7.0 libapache2-mod-php7.0
-sleep 3 
+
+sleep 3
 apt-get install -y phpmyadmin
 curl localhost
 sleep 3
@@ -23,7 +28,17 @@ echo '#phpmyadmin include' >> /etc/apache2/apache2.conf
 echo 'Include /etc/phpmyadmin/apache.conf' >> /etc/apache2/apache2.conf
 service apache2 restart
 apt-get install -y php-mbstring php-gettext
+
+#18.04
+# apt-get -y install gcc make autoconf libc-dev pkg-config
+# apt-get -y install libmcrypt-dev
+# apt-get -y install php-pear php-dev
+# pecl install --nodeps mcrypt-snapshot
+## Enter at libmcrypt prefix? [autodetect] :
+# nano /etc/php/7.2/apache2/php.ini
+## put 'extension=mcrypt.so' under Dynamic Extensions
 phpenmod mcrypt
+
 phpenmod mbstring
 mkdir ~/Downloads
 mkdir ~/Downloads/Multicraft
@@ -34,6 +49,34 @@ sudo apt-get install -y default-jre zip unzip
 cd multicraft/
 ./setup.sh
 ip a | grep inet | sed '/inet6/d'
+ufw allow 443
+ufw allow 80
+ufw allow 21
+ufw allow 22
+ufw allow 25565
+ufw enable
+echo y | ufw delete 6
+echo y | ufw delete 6
+echo y | ufw delete 6
+echo y | ufw delete 6
+echo y | ufw delete 6
+##If you want ssl
+##(Select option 1)
+# add-apt-repository ppa:certbot/certbot
+# apt install python-certbot-apache
+# certbot --apache -d subdomain.domain.com
+# service apache2 restart
+# a2enmod rewrite
+# service apache2 restart
+# a2enmod ssl
+# service apache2 restart
+# sudo nano /etc/apache2/sites-available/000-default.conf 
+## Copy this text to it
+## #HTTP to HTTPS
+## ServerName domain.example.com
+## RewriteEngine on
+## RewriteCond %{SERVER_NAME} =domain.example.com
+## RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 echo 'Press Enter when web setup is complete'
 read
 /home/minecraft/multicraft/bin/multicraft start
@@ -41,17 +84,14 @@ echo "Done, Return to web"
 echo "Press Enter when finished web"
 read
 rm -Rf /var/www/html/multicraft/install.php
-ufw enable
-ufw allow 21
-ufw allow 25565
-echo y | ufw delete 3
-echo y | ufw delete 3
-ufw allow 80
-echo y | ufw delete 4
 wget http://www.multicraft.org/files/multicraft.service -O /etc/systemd/system/multicraft.service
 chmod 644 /etc/systemd/system/multicraft.service
 systemctl enable multicraft
 #Credit to the video https://youtu.be/lR-NKpZRja4 for helping out
-#sudo add-apt-repository ppa:certbot/certbot
-#sudo apt install python-certbot-apache
-#sudo certbot --apache -d mysite1.com
+
+##Notes##
+# Could have to do this
+# mysql -u root -p
+# CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
+# FLUSH PRIVILEGES;
