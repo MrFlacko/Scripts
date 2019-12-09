@@ -97,3 +97,6 @@ wget http://www.multicraft.org/files/multicraft.service -O /etc/systemd/system/m
 chmod 644 /etc/systemd/system/multicraft.service
 systemctl enable multicraft
 #Credit to the video https://youtu.be/lR-NKpZRja4 for helping out
+
+#Notes
+cd ~/Downloads/Multicraft/multicraft
