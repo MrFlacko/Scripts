@@ -1,20 +1,20 @@
 #!/bin/bash
 pacman -S wget git unzip --noconfirm
-mkdir /home/flacko/Videos
-mkdir /home/flacko/Documents
-mkdir /home/flacko/Music
-mkdir /home/flacko/Pictures
-mkdir /home/flacko/Downloads
-mkdir /home/flacko/.vpn
-cd /home/flacko/Downloads
+mkdir /home/nicole/Videos
+mkdir /home/nicole/Documents
+mkdir /home/nicole/Music
+mkdir /home/nicole/Pictures
+mkdir /home/nicole/Downloads
+mkdir /home/nicole/.vpn
+cd /home/nicole/Downloads
 git clone https://aur.archlinux.org/yay.git
 cd /home/flacko/.vpn
 wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip
 unzip ovpn.zip
 rm ovpn.zip
-cd /home/flacko/Downloads/yay
-chown -R flacko /home/flacko/
-sudo -u flacko makepkg -si --noconfirm
+cd /home/nicole/Downloads/yay
+chown -R flacko /home/nicole/
+sudo -u nicole makepkg -si --noconfirm
 rm -rv ../yay
 grub-mkconfig -o /boot/grub/grub.cfg
 echo >> /etc/default/grub
