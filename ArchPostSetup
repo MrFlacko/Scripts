@@ -1,4 +1,6 @@
 #!/bin/bash
+curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/mirrorsaustralia > /etc/pacman.d/mirrorlist
+pacman -Syyu --noconfirm
 pacman -S wget git unzip --noconfirm
 mkdir /home/nicole/Videos
 mkdir /home/nicole/Documents
@@ -8,25 +10,25 @@ mkdir /home/nicole/Downloads
 mkdir /home/nicole/.vpn
 cd /home/nicole/Downloads
 git clone https://aur.archlinux.org/yay.git
-cd /home/flacko/.vpn
+cd /home/nicole/.vpn
 wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip
 unzip ovpn.zip
 rm ovpn.zip
 cd /home/nicole/Downloads/yay
-chown -R flacko /home/nicole/
+chown -R nicole /home/nicole/
 sudo -u nicole makepkg -si --noconfirm
 rm -rv ../yay
 grub-mkconfig -o /boot/grub/grub.cfg
 echo >> /etc/default/grub
 echo \#Achieve Fastest Boot >> /etc/default/grub
 echo GRUB_FORCE_HIDDEN_MENU=true >> /etc/default/grub
-cd /home/flacko/Downloads
+cd /home/nicole/Downloads
 wget https://gist.githubusercontent.com/anonymous/8eb2019db2e278ba99be/raw/257f15100fd46aeeb8e33a7629b209d0a14b9975/gistfile1.sh
 chmod a+x gistfile1.sh
 mv gistfile1.sh /etc/grub.d/31holdshift
 grub-mkconfig -o /boot/grub/grub.cfg
-sudo -u flacko yay -S teamviewer qbittorrent-dark-git timeshift --noconfirm
+sudo -u nicole yay -S teamviewer qbittorrent-dark-git timeshift --noconfirm
 systemctl enable teamviewerd 
 systemctl enable ufw
 systemctl enable sshd
-pacman -S networkmanager-openvpn openvpn gvfs ntfs-3g openssh gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs deepin-movie net-tools traceroute wireshark-qt nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still galculator-gtk2 dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en pkgstats ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode virt-manager libvirt ebtables qemu dnsmasq ufw dnsmasq remmina gnome-remote-desktop freerdp w3m nano curl --noconfirm
+#pacman -S networkmanager-openvpn openvpn gvfs ntfs-3g openssh gvfs-afc gvfs-goa gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs deepin-movie net-tools traceroute wireshark-qt nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still galculator-gtk2 dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en pkgstats ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode virt-manager libvirt ebtables qemu dnsmasq ufw dnsmasq remmina gnome-remote-desktop freerdp w3m nano curl --noconfirm
