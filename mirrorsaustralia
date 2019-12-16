@@ -1,0 +1,19 @@
+##
+## Arch Linux repository mirrorlist
+## Generated on 2019-12-16
+##
+
+## Australia
+Server = https://mirror.aarnet.edu.au/pub/archlinux/$repo/os/$arch
+Server = http://archlinux.mirror.digitalpacific.com.au/$repo/os/$arch
+Server = http://ftp.iinet.net.au/pub/archlinux/$repo/os/$arch
+Server = http://mirror.internode.on.net/pub/archlinux/$repo/os/$arch
+Server = http://archlinux.melbourneitmirror.net/$repo/os/$arch
+Server = http://syd.mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = https://syd.mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = http://ftp.swin.edu.au/archlinux/$repo/os/$arch
+
+## Worldwide
+Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
+Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
