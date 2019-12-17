@@ -17,9 +17,9 @@ chown -R $username /home/$username/
 sudo -u $username makepkg -si --noconfirm
 rm -rv ../yay
 cd /home/$username/Downloads
-sudo -u $username yay -S teamviewer qbittorrent-dark-git minecraft-launcher --noconfirm
+sudo -u $username yay -S teamviewer ocenaudio flameshot qbittorrent-dark-git minecraft-launcher --noconfirm
 systemctl enable teamviewerd 
 systemctl enable ufw
 ufw enable
-pacman -S gvfs ntfs-3g openssh gvfs-afc gvfs-goa bridge-utils gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs deepin-movie net-tools traceroute wireshark-qt nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still galculator-gtk2 dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en pkgstats ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode virt-manager libvirt ebtables qemu dnsmasq ufw dnsmasq remmina gnome-remote-desktop freerdp w3m nano curl --noconfirm
+pacman -S ntfs-3g gvfs-afc gvfs-goa gvfs-google htop gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs deepin-movie net-tools traceroute nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en pkgstats ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode ufw w3m nano curl filezilla gimp discord  --noconfirm
 systemctl enable libvirtd
