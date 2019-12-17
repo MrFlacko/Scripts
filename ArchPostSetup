@@ -22,4 +22,3 @@ systemctl enable teamviewerd
 systemctl enable ufw
 ufw enable
 pacman -S ntfs-3g gvfs-afc gvfs-goa gvfs-google htop gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs deepin-movie net-tools traceroute nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en pkgstats ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode ufw w3m nano curl filezilla gimp discord  --noconfirm
-systemctl enable libvirtd
