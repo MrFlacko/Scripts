@@ -1,0 +1,9 @@
+curl https://github.com/MrFlacko/Scripts/edit/master/UbuntuMirrors18.04 > /etc/apt/sources.list
+rmmod floppy
+echo 'blacklist floppy' | tee /etc/modprobe.d/blacklist-floppy.conf
+dpkg-reconfigure initramfs-tools
+apt-get update
+apt upgrade -y
+ufw enable
+ufw allow 22
+echo y | ufw delete 2
