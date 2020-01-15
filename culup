@@ -1,0 +1,11 @@
+#!/bin/bash
+apt-get update
+apt upgrade -y
+apt install ufw -y
+ufw allow 25565
+ufw allow 22
+echo y | ufw delete 3
+echo y | ufw delete 3
+ufw enable
+apt-get install -y curl wget htop vim nano cmatrix fail2ban sl
+updatedb
