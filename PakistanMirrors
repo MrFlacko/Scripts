@@ -1,0 +1,30 @@
+##
+## Arch Linux repository mirrorlist
+## Generated on 2020-02-07
+##
+
+## India
+Server = https://ind.mirror.pkgbuild.com/$repo/os/$arch
+Server = http://mirror.cse.iitk.ac.in/archlinux/$repo/os/$arch
+
+## China
+#Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+#Server = http://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.cqu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirror.lzu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirror.redrock.team/archlinux/$repo/os/$arch
+#Server = https://mirror.redrock.team/archlinux/$repo/os/$arch
+#Server = https://mirrors.sjtug.sjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.xjtu.edu.cn/archlinux/$repo/os/$arch
+#Server = http://mirrors.zju.edu.cn/archlinux/$repo/os/$arch
+
+## Worldwide
+Server = http://mirrors.evowise.com/archlinux/$repo/os/$arch
+Server = http://mirror.rackspace.com/archlinux/$repo/os/$arch
+Server = https://mirror.rackspace.com/archlinux/$repo/os/$arch
