@@ -1,5 +1,5 @@
 #!/bin/bash
-#wet bit.ly/2tuAvPT && bash 2tuAvPT
+#wget bit.ly/2tuAvPT && bash 2tuAvPT
 echo Enter your username
 read username
 pacman -Syy
