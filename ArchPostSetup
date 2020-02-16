@@ -4,7 +4,11 @@ echo Enter your username
 read username
 pacman -Syy
 pacman -S curl --noconfirm
-#curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/mirrorsaustralia > /etc/pacman.d/mirrorlist
+#curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/mirrorsaustralia > /etc/pacman.d/mirrorlist #Australia
+curl https://hastebin.com/raw/uzofajeyas > /etc/pacman.d/mirrorlisttmp #Argentina
+pacman -Sy pacman-contrib --noconfirm
+cat /etc/pacman.d/mirrorlisttmp | rankmirrors -n 15 - > /etc/pacman.d/mirrorlist
+rm /etc/pacman.d/mirrorlisttmp
 pacman -Syyu --noconfirm
 pacman -S wget git unzip nano --noconfirm
 pacman -S ntfs-3g gvfs-afc gvfs-goa gvfs-google htop gvfs-gphoto2 gvfs-mtp gvfs-mtp gvfs-nfs gvfs-smb nautilus p7zip unzip zip unrar ark thunderbird sl code nomacs net-tools traceroute nmap evince gnome-disk-utility ksysguard obs-studio baobab mousepad spectacle libreoffice-still dia firefox gimp htop peek adobe-source-sans-pro-fonts aspell-en enchant gst-libav gst-plugins-good icedtea-web jre8-openjdk languagetool libmythes mythes-en ttf-anonymous-pro ttf-bitstream-vera ttf-dejavu ttf-droid ttf-liberation ttf-ubuntu-font-family intel-ucode ufw w3m nano curl filezilla gimp discord  --noconfirm
