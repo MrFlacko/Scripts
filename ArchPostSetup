@@ -7,7 +7,7 @@ pacman -S curl --noconfirm
 #curl https://raw.githubusercontent.com/MrFlacko/Scripts/master/mirrorsaustralia > /etc/pacman.d/mirrorlist #Australia
 curl https://hastebin.com/raw/uzofajeyas > /etc/pacman.d/mirrorlisttmp #Argentina
 pacman -Sy pacman-contrib --noconfirm
-cat /etc/pacman.d/mirrorlisttmp | rankmirrors -n 15 > /etc/pacman.d/mirrorlist
+cat /etc/pacman.d/mirrorlisttmp | rankmirrors -n 15 - > /etc/pacman.d/mirrorlist
 rm /etc/pacman.d/mirrorlisttmp
 pacman -Syyu --noconfirm
 pacman -S wget git unzip nano --noconfirm
