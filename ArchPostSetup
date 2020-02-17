@@ -25,7 +25,7 @@ chown -R $username /home/$username/
 sudo -u $username makepkg -si --noconfirm
 rm -rv ../yay
 cd /home/$username/Downloads
-sudo -u $username yay -S teamviewer ocenaudio flameshot qbittorrent-dark-git minecraft-launcher --noconfirm
+sudo -u $username yay -S teamviewer qbittorrent-dark-git minecraft-launcher --noconfirm
 systemctl enable teamviewerd 
 systemctl enable ufw
 ufw enable
