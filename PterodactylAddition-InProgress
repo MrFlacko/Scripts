@@ -764,18 +764,11 @@ function main {
 }
 
 function ufwEnable-Ubuntu {
-    read -p "Do you want to enable a firewall? (Y/n): " CONFIRM
+    read -p "Do you want to enable a firewall? (y/N): " CONFIRM
     if [ "$CONFIRM" == "y" ]; then
       apt install ufw -y
       ufw-Ubuntu
     elif [ "$CONFIRM" == "Y" ]; then
-      apt install ufw -y
-      ufw-Ubuntu
-    elif [ "$CONFIRM" == "n" ]; then
-      exit 1
-    elif [ "$CONFIRM" == "N" ]; then
-      exit 1
-    else
       apt install ufw -y
       ufw-Ubuntu
     fi    
@@ -837,8 +830,6 @@ function autoCertUbuntu18 {
     #Needs to be tested if a "Sleep" is required here
     #Have had a similar issue in the past where it skips a command.
     certbot certonly -d $fqdn
-
-    exit 0
 }
 
 function goodbye {
