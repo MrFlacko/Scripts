@@ -603,14 +603,7 @@ function perform_install {
   if [ "$WEBSERVER" == "nginx" ]; then
     configure_nginx
   elif [ "$WEBSERVER" == "apache" ]; then
-    configure_    if [ "$OS_VER_MAJOR" == "18" ]; then
-      read -p "Do you want to setup your HTTPS certificate automatically with LetsEncrypt? (y/N): " CONFIRMSSL
-      if [ "$CONFIRMSSL" == "y" ]; then
-        autoCertUbuntu18
-      elif [ "$CONFIRMSSL" == "Y" ]; then
-        autoCertUbuntu18
-      fi    
-    fiapache
+    configure_apache
   else
     print_error "Invalid webserver."
     exit 1
