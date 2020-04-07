@@ -11,9 +11,7 @@ bash <(curl -s https://raw.githubusercontent.com/MrFlacko/pterodactyl-installer/
 bash <(curl -s https://raw.githubusercontent.com/VilhelmPrytz/pterodactyl-installer/master/install-daemon.sh)
 apt update
 apt upgrade -y
-apt install certbot
-echo 'Certbot running'
-echo 'Select create temporary website to configure'
+apt install ufw -y
 ufw allow 443
 ufw allow 80
 ufw allow 22
@@ -27,6 +25,9 @@ echo y | ufw delete 7
 echo y | ufw delete 7
 echo y | ufw delete 7
 ufw enable
+apt install certbot
+echo 'Certbot running'
+echo 'Select create temporary website to configure'
 certbot certonly -d $fqdn
 systemctl restart nginx
 echo done
