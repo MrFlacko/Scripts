@@ -1,0 +1,27 @@
+sudo su
+ufw allow from 172.16.0.0./14
+nano /etc/mysql/mariadb.conf.d/50-server.cnf (change 127.0.0.1 to 0.0.0.0)
+systemctl restart mysql (Wasn't mentioned in the video, but you need to do it)
+systemctl restart mariadb (Wasn't mentioned in the video, but you need to do it)
+mysql -u root -p (press enter twice)
+use mysql;
+
+## Pterodactyl Setup
+create user 'user'@'%' identified by 'Password1';
+grant all privileges on *.* to 'user'@'%' with grant option;
+flush privileges;
+exit
+
+## Normal Database Setup
+create user 'server'@'%' identified by 'Password1';
+create database server;
+grant all privileges on server.* to 'server'@'%';
+flush privileges;
+exit
+
+
+
+
+## If there are any issues, you can leave a comment, or open a ticket at https://support.plexusmc.net Or you can even join the discord at https://discord.plexusmc.net
+## I did just type this out by hand so there could be a mistake.
+## Thank you for watching the video :) https://youtu.be/C7Xo7WvHTYk
