@@ -20,7 +20,7 @@ sudo apt install net-tools apt-transport-https software-properties-common certbo
 ## Docker Install Script
 # https://docs.docker.com/engine/install/ubuntu/
 curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh --dry-run
+sudo sh ./get-docker.sh
 
 
 ## Certbot
