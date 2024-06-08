@@ -25,7 +25,7 @@ sudo sh ./get-docker.sh
 
 ## Certbot
 certbot certonly -d server.flacko.net
-# plexusmcnetwork@gmail.com
+# youremail@gmail.com
 # 1
 # y
 # y
